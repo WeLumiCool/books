@@ -1,6 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\BasketController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+//Для корзины
+Route::get('/basket', [BasketController::class, 'index']);
+Route::get('/change_basket',[BasketController::class], 'change_basket');
+
+
+Route::get('/get_books',[BookController::class, 'index']);
+Route::get('/get_types',[TypeController::class, 'index']);
+Route::get('/get_genres',[GenreController::class, 'index']);
