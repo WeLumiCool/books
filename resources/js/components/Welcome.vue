@@ -1,35 +1,38 @@
 <template>
-    <nav class="site-header sticky-top py-1">
-        <div class="container d-flex flex-column flex-md-row justify-content-between">
-            <a class="py-2" href="#" aria-label="Product">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24" focusable="false"><title>Product</title><circle cx="12" cy="12" r="10"></circle><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path></svg>
-            </a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
-            <a class="py-2 d-none d-md-inline-block" href="#">Cart</a>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="row justify-content-center">
-            <nav class="site-header sticky-top py-1">
-                <div class="container d-flex flex-column flex-md-row justify-content-between">
-                    <a class="py-2" href="#" aria-label="Product">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mx-auto" role="img" viewBox="0 0 24 24" focusable="false"><title>Product</title><circle cx="12" cy="12" r="10"></circle><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path></svg>
-                    </a>
-                    <a class="py-2 d-none d-md-inline-block" href="#">Tour</a>
-                    <a class="py-2 d-none d-md-inline-block" href="#">Product</a>
-                    <a class="py-2 d-none d-md-inline-block" href="#">Features</a>
-                    <a class="py-2 d-none d-md-inline-block" href="#">Enterprise</a>
-                    <a class="py-2 d-none d-md-inline-block" href="#">Support</a>
-                    <a class="py-2 d-none d-md-inline-block" href="#">Pricing</a>
-                    <a class="py-2 d-none d-md-inline-block" href="#">Cart</a>
+    <div>
+        <section class="pt-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-3">
+                        <div class="list-group">
+                            <p class="font-weight-bold text-center">Жанры</p>
+                            <a href="#" class="list-group-item list-group-item-action small active">
+                                Cras justo odio
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action small">Dapibus ac facilisis in</a>
+                            <a href="#" class="list-group-item list-group-item-action small">Morbi leo risus</a>
+                            <a href="#" class="list-group-item list-group-item-action small">Porta ac consectetur ac</a>
+                            <a href="#" class="list-group-item list-group-item-action small" tabindex="-1" aria-disabled="true">Vestibulum at eros</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-9">
+                        <div class="row">
+                            <div v-for="book in books" :key="book.id" class="col-lg-3 col-12">
+                                <div class="card mb-3">
+                                    <img :src="'img/i699736 (1).jpg'" alt="">
+                                    <div class="card-body">
+                                        <p class=" text-muted"> {{ book.author }}</p>
+                                        <p class="card-title font-weight-bold h5"> {{ book.name }}</p>
+                                        <span class="">Цена: <span class="font-weight-bold"> {{ book.price }}</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </nav>
-        </div>
+            </div>
+        </section>
     </div>
 </template>
 
@@ -37,6 +40,54 @@
     export default {
         mounted() {
             console.log('Component mounted.')
+        },
+        data() {
+            return {
+                books: [
+                    {
+                        'name': 'Война и мир',
+                        'author': 'Лев Н.Т.',
+                        'price': 500,
+                        'image': 'dwadwad',
+                    },
+                    {
+                        'name': 'Война и мир',
+                        'author': 'Лев Н.Т.',
+                        'price': 500,
+                        'image': 'dwadwad',
+                    },
+                    {
+                        'name': 'Война и мир',
+                        'author': 'Лев Н.Т.',
+                        'price': 500,
+                        'image': 'dwadwad',
+                    },
+                    {
+                        'name': 'Война и мир',
+                        'author': 'Лев Н.Т.',
+                        'price': 500,
+                        'image': 'dwadwad',
+                    },
+                    {
+                        'name': 'Война и мир',
+                        'author': 'Лев Н.Т.',
+                        'price': 500,
+                        'image': 'dwadwad',
+                    },
+                    {
+                        'name': 'Война и мир',
+                        'author': 'Лев Н.Т.',
+                        'price': 500,
+                        'image': 'dwadwad',
+                    },
+                    {
+                        'name': 'Война и мир',
+                        'author': 'Лев Н.Т.',
+                        'price': 500,
+                        'image': 'dwadwad',
+                    },
+                ]
+            }
         }
     }
 </script>
