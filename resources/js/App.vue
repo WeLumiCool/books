@@ -13,82 +13,22 @@
 
                     <div class="collapse navbar-collapse justify-content-between" id="navbarTogglerDemo02">
                         <ul class="nav justify-content-lg-end justify-content-center">
-                            <li class="nav-item dropdown menu-area ">
-<!--                                <a class="nav-link dropdown-toggle  text-decoration-none"-->
-<!--                                   href="#"-->
-<!--                                   id="mega-one" role="button" data-toggle="dropdown"-->
-<!--                                   aria-haspopup="true" aria-expanded="false">-->
-<!--                                    Жанры-->
-<!--                                </a>-->
-<!--                                <div class="dropdown-menu mega-area" aria-labelledby="mega-one">-->
-<!--                                    <div class="row p-5">-->
-<!--                                        <div class="col-sm-6 col-lg-3">-->
-<!--                                            <h5>Web Design</h5>-->
-<!--                                            <a class="dropdown-item" href="#">HTML Template</a>-->
-<!--                                            <a class="dropdown-item" href="#">Another action</a>-->
-<!--                                            <a class="dropdown-item" href="#">Something else-->
-<!--                                                here</a>-->
-<!--                                            <a class="dropdown-item" href="#">Something else-->
-<!--                                                here</a>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-sm-6 col-lg-3">-->
-<!--                                            <h5>Craphics Design</h5>-->
-<!--                                            <a class="dropdown-item" href="#">Logo Design</a>-->
-<!--                                            <a class="dropdown-item" href="#">Another action</a>-->
-<!--                                            <a class="dropdown-item" href="#">Something else here</a>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-sm-6 col-lg-3">-->
-<!--                                            <h5>Company Profile</h5>-->
-<!--                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt,-->
-<!--                                                porro.</p>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-sm-6 col-lg-3">-->
-<!--                                            <h5>Image</h5>-->
-<!--                                            <img src="" alt="" style="width: 100%;">-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-                            </li>
-                            <li class="nav-item dropdown menu-area ">
-                                <a class="nav-link dropdown-toggle  text-decoration-none" href="#"
-                                   id="mega-two" role="button" data-toggle="dropdown"
-                                   aria-haspopup="true" aria-expanded="false">
-                                    Типы
-                                </a>
-                                <div class="dropdown-menu mega-area" aria-labelledby="mega-two">
-                                    <div class="row p-5">
-                                        <div class="col-sm-6 col-lg-3">
-                                            <h5>Image</h5>
-                                            <img src="" alt="" style="width: 100%;">
-                                        </div>
-                                        <div class="col-sm-6 col-lg-3">
-                                            <h5>Marketplace We work</h5>
-                                            <a class="dropdown-item" href="#">Themeforest</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                        <div class="col-sm-6 col-lg-3">
-                                            <h5>It Consulting</h5>
-                                            <a class="dropdown-item" href="#">Themeforest</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                        </div>
-                                        <div class="col-sm-6 col-lg-3">
-                                            <h5>Tags</h5>
-                                            <p>
-                                                <span class="badge badge-secondary">Marketing</span>
-                                                <span class="badge badge-secondary">Web Design</span>
-                                                <span class="badge badge-secondary">Consulting</span>
-                                                <span class="badge badge-secondary">Consulting</span>
-                                                <span class="badge badge-secondary">Consulting</span>
-                                                <span class="badge badge-secondary">Consulting</span>
-                                                <span class="badge badge-secondary">Consulting</span>
-                                                <span class="badge badge-secondary">Consulting</span>
-                                                <span class="badge badge-secondary">Consulting</span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                                <li class="nav-item active ">
+                                    <a class="nav-link  " href="#">О нас<span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link  " href="#">Новости и мероприятия</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link  " href="#">Доставка и оплата</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link t" href="#">Что почитать?</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link  " href="#">Сотрудничество</a>
+                                </li>
+
 
                         </ul>
 
@@ -103,40 +43,7 @@
             </div>
 
         </section>
-<!--        <section class="pt-2">-->
-<!--            <div class="container">-->
-<!--                <div class="row">-->
 
-<!--                    <div class="col-12 col-lg-9 pt-2">-->
-<!--                        <ul class="nav ">-->
-<!--                            <li class="nav-item active ">-->
-<!--                                <a class="nav-link  " href="#">О нас<span class="sr-only">(current)</span></a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link  " href="#">Новости и мероприятия</a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link  " href="#">Доставка и оплата</a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link t" href="#">Что почитать?</a>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item">-->
-<!--                                <a class="nav-link  " href="#">Сотрудничество</a>-->
-<!--                            </li>-->
-
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                    <div class="col-lg-3 col-12  pt-2">-->
-<!--                        <div class="d-flex justify-content-end">-->
-<!--                            <form class="form-inline my-2 my-lg-0">-->
-<!--                                <input class="form-control mr-sm-2" type="search" placeholder="Поиск">-->
-<!--                            </form>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
         <main class="">
             <router-view></router-view>
         </main>
@@ -154,7 +61,7 @@
 
                     </div>
                     <div class="col-6 col-md pt-3">
-                        <h5>Что почитать?</h5>
+                        <h6>Что почитать?</h6>
                         <ul class="list-unstyled text-small">
                             <li><a class="text-muted" href="#">Бестселлеры</a></li>
                             <li><a class="text-muted" href="#">Скоро в продаже</a></li>
@@ -163,7 +70,7 @@
                         </ul>
                     </div>
                     <div class="col-6 col-md pt-3">
-                        <h5>Сотрудничесвто</h5>
+                        <h6>Сотрудничество</h6>
                         <ul class="list-unstyled text-small">
                             <li><a class="text-muted" href="#">Библиотекам</a></li>
                             <li><a class="text-muted" href="#">Авторам</a></li>
