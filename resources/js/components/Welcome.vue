@@ -3,95 +3,17 @@
         <section class="pt-2">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-12 pt-2">
-                        <label for="cars">Выберите Тип:</label>
-                        <select name="cars" id="cars">
-                            <option value="children">Детская литература</option>
-                            <option value="saab">Художественная литература</option>
-                            <option value="business">Бизнес-книги</option>
-                            <option value="psihology">Психология</option>
-                            <option value="fantasy">Фантастика</option>
-                        </select>
-<!--                        <ul class="nav ">-->
-<!--                            <li class="nav-item dropdown menu-area ">-->
-<!--                                <a class="nav-link dropdown-toggle  text-decoration-none"-->
-<!--                                   href="#"-->
-<!--                                   id="mega-one" role="button" data-toggle="dropdown"-->
-<!--                                   aria-haspopup="true" aria-expanded="false">-->
-<!--                                    Жанры-->
-<!--                                </a>-->
-<!--                                <div class="dropdown-menu mega-area" aria-labelledby="mega-one">-->
-<!--                                    <div class="row p-5">-->
-<!--                                        <div class="col-sm-6 col-lg-3">-->
-<!--                                            <h5>Web Design</h5>-->
-<!--                                            <a class="dropdown-item" href="#">HTML Template</a>-->
-<!--                                            <a class="dropdown-item" href="#">Another action</a>-->
-<!--                                            <a class="dropdown-item" href="#">Something else-->
-<!--                                                here</a>-->
-<!--                                            <a class="dropdown-item" href="#">Something else-->
-<!--                                                here</a>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-sm-6 col-lg-3">-->
-<!--                                            <h5>Craphics Design</h5>-->
-<!--                                            <a class="dropdown-item" href="#">Logo Design</a>-->
-<!--                                            <a class="dropdown-item" href="#">Another action</a>-->
-<!--                                            <a class="dropdown-item" href="#">Something else here</a>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-sm-6 col-lg-3">-->
-<!--                                            <h5>Company Profile</h5>-->
-<!--                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt,-->
-<!--                                                porro.</p>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-sm-6 col-lg-3">-->
-<!--                                            <h5>Image</h5>-->
-<!--                                            <img src="" alt="" style="width: 100%;">-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item dropdown menu-area ">-->
-<!--                                <a class="nav-link dropdown-toggle  text-decoration-none" href="#"-->
-<!--                                   id="mega-two" role="button" data-toggle="dropdown"-->
-<!--                                   aria-haspopup="true" aria-expanded="false">-->
-<!--                                    Типы-->
-<!--                                </a>-->
-<!--                                <div class="dropdown-menu mega-area" aria-labelledby="mega-two">-->
-<!--                                    <div class="row p-5">-->
-<!--                                        <div class="col-sm-6 col-lg-3">-->
-<!--                                            <h5>Image</h5>-->
-<!--                                            <img src="" alt="" style="width: 100%;">-->
-<!--                                        </div>-->
-<!--                                        <div class="col-sm-6 col-lg-3">-->
-<!--                                            <h5>Marketplace We work</h5>-->
-<!--                                            <a class="dropdown-item" href="#">Themeforest</a>-->
-<!--                                            <a class="dropdown-item" href="#">Another action</a>-->
-<!--                                            <a class="dropdown-item" href="#">Something else here</a>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-sm-6 col-lg-3">-->
-<!--                                            <h5>It Consulting</h5>-->
-<!--                                            <a class="dropdown-item" href="#">Themeforest</a>-->
-<!--                                            <a class="dropdown-item" href="#">Another action</a>-->
-<!--                                        </div>-->
-<!--                                        <div class="col-sm-6 col-lg-3">-->
-<!--                                            <h5>Tags</h5>-->
-<!--                                            <p>-->
-<!--                                                <span class="badge badge-secondary">Marketing</span>-->
-<!--                                                <span class="badge badge-secondary">Web Design</span>-->
-<!--                                                <span class="badge badge-secondary">Consulting</span>-->
-<!--                                                <span class="badge badge-secondary">Consulting</span>-->
-<!--                                                <span class="badge badge-secondary">Consulting</span>-->
-<!--                                                <span class="badge badge-secondary">Consulting</span>-->
-<!--                                                <span class="badge badge-secondary">Consulting</span>-->
-<!--                                                <span class="badge badge-secondary">Consulting</span>-->
-<!--                                                <span class="badge badge-secondary">Consulting</span>-->
-<!--                                            </p>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </li>-->
-<!--                        </ul>-->
+                    <div class="col-12 col-lg-12 py-2">
+                        <div class="select">
+                            <select name="cars" id="cars">
+                                <option value="children">Детская литература</option>
+                                <option value="saab">Художественная литература</option>
+                                <option value="business">Бизнес-книги</option>
+                                <option value="psihology">Психология</option>
+                                <option value="fantasy">Фантастика</option>
+                            </select>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -107,7 +29,6 @@
                             <a v-for="genre in genres" href="#" @click="filter_genre(genre.id)"
                                class="list-group-item list-group-item-action small"
                                :class="{active:genre_id === genre.id}">{{ genre.name }}</a>
-
                         </div>
                     </div>
                     <div class="col-12 col-lg-9">
@@ -119,7 +40,7 @@
                                         <p class=" text-muted"> {{ book.author.name }}</p>
                                         <p class="card-title font-weight-bold h5"> {{ book.name }}</p>
                                         <span class="">Цена: <span
-                                                class="font-weight-bold"> {{ book.price }}</span></span>
+                                            class="font-weight-bold"> {{ book.price }}</span></span>
                                     </div>
                                 </div>
                             </div>
@@ -173,11 +94,12 @@
 </script>
 
 <style scoped>
-    .card:hover{
+    .card:hover {
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         transition: 0.3s;
         padding: 1px;
     }
+
     .dropdown:hover {
         display: block;
     }
@@ -197,4 +119,64 @@
     .dropdown-item {
         padding: 5px 0;
     }
+
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+        outline: 0;
+        box-shadow: none;
+        border: 0 !important;
+        background: #007bff;
+        background-image: none;
+    }
+
+    /* Remove IE arrow */
+    select::-ms-expand {
+        display: none;
+    }
+
+    /* Custom Select */
+    .select {
+        position: relative;
+        display: flex;
+        width: 16em;
+        height: 3em;
+        line-height: 3;
+        background: #dff4e8;
+        overflow: hidden;
+        border-radius: .25em;
+    }
+
+    select {
+        flex: 1;
+        padding: 0 .5em;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    /* Arrow */
+    .select::after {
+        content: '\25BC';
+        color: white;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0 1em;
+        background: #007bff;
+        cursor: pointer;
+        pointer-events: none;
+        -webkit-transition: .25s all ease;
+        -o-transition: .25s all ease;
+        transition: .25s all ease;
+    }
+
+    /* Transition */
+    .select:hover::after {
+        color: #000;
+    }
+
+
+
 </style>
