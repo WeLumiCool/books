@@ -3,15 +3,20 @@
         <section class="pt-2">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-12 py-2">
+                    <div class="col-12 col-lg-3 py-2">
                         <div class="select">
-                            <select name="cars" id="cars">
+                            <select class="font-size-14" name="cars" id="cars">
                                 <option value="children">Детская литература</option>
                                 <option value="saab">Художественная литература</option>
                                 <option value="business">Бизнес-книги</option>
                                 <option value="psihology">Психология</option>
                                 <option value="fantasy">Фантастика</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-9">
+                        <div class="input-group pt-3">
+                            <input id="search" type="text" v-model="search" @keyup="get_books"  class="form-control" placeholder="Название книги,автор">
                         </div>
                     </div>
                 </div>
@@ -22,19 +27,19 @@
                 <div class="row">
                     <div class="col-12 col-lg-3">
                         <div class="list-group">
-                            <p class="font-weight-bold text-center">Жанры</p>
+                            <h4 class="text-muted">Жанры</h4>
                             <a href="#" @click="filter_genre()"
-                               class="list-group-item list-group-item-action small"
+                               class="list-group-item list-group-item-action "
                                :class="{active:genre_id === 0}">Все</a>
                             <a v-for="genre in genres" href="#" @click="filter_genre(genre.id)"
-                               class="list-group-item list-group-item-action small"
+                               class="list-group-item list-group-item-action font-size-14"
                                :class="{active:genre_id === genre.id}">{{ genre.name }}</a>
                         </div>
                     </div>
                     <div class="col-12 col-lg-9">
                         <div class="row">
                             <div v-for="book in paginateData.data" class="col-lg-3 col-12">
-                                <div class="card mb-3">
+                                <div class="card mb-4" style="transition: 0.15s all ease-in-out;">
                                     <img :src="book.image" alt="">
                                     <div class="card-body">
                                         <p class=" text-muted"> {{ book.author.name }}</p>
@@ -62,10 +67,14 @@
                 genres: [],
                 genre_id: 0,
                 type_id: 0,
+                search: '',
+                allData:'',
+                nodata: false
 
             }
         },
         methods: {
+
             get_genres() {
                 axios.get('api/get_genres').then(response => {
                     this.genres = response.data.genres;
@@ -75,7 +84,8 @@
                 axios.get('api/get_books?page=' + page, {
                     params: {
                         genre_id: this.genre_id,
-                        type_id: this.type_id
+                        type_id: this.type_id,
+                        search: this.search
                     }
                 }).then(response => {
                     this.paginateData = response.data.books;
@@ -90,14 +100,22 @@
             this.get_books();
             this.get_genres();
         },
+        computed:{
+            filteredBooks:function(){
+                 console.log(book);
+                return this.search.filter((book) => {
+                    return book.name.match(this.search);
+                });
+            }
+        }
     }
 </script>
 
 <style scoped>
     .card:hover {
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
         transition: 0.3s;
-        padding: 1px;
+        transform: scale(1.1);
     }
 
     .dropdown:hover {
@@ -128,7 +146,7 @@
         outline: 0;
         box-shadow: none;
         border: 0 !important;
-        background: #007bff;
+        background: #e3e3e3;
         background-image: none;
     }
 
@@ -152,7 +170,7 @@
     select {
         flex: 1;
         padding: 0 .5em;
-        color: #fff;
+        color: #000;
         cursor: pointer;
     }
 
@@ -164,7 +182,7 @@
         top: 0;
         right: 0;
         padding: 0 1em;
-        background: #007bff;
+        background: #e3e3e3;
         cursor: pointer;
         pointer-events: none;
         -webkit-transition: .25s all ease;
@@ -177,6 +195,17 @@
         color: #000;
     }
 
+    .list-group-item {
+        color: #000;
+        background-color: #ffffff;
+        padding: 0.45rem 2.15rem !important;
+        border: none !important;
+    }
 
-
+    .list-group-item:hover {
+        color: #007bff;
+    }
+    .font-size-14{
+        font-size: 14px;
+    }
 </style>

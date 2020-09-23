@@ -2031,6 +2031,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -2266,6 +2267,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2274,7 +2280,10 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       paginateData: {},
       genres: [],
       genre_id: 0,
-      type_id: 0
+      type_id: 0,
+      search: '',
+      allData: '',
+      nodata: false
     };
   },
   methods: {
@@ -2292,7 +2301,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       axios.get('api/get_books?page=' + page, {
         params: {
           genre_id: this.genre_id,
-          type_id: this.type_id
+          type_id: this.type_id,
+          search: this.search
         }
       }).then(function (response) {
         _this2.paginateData = response.data.books;
@@ -2307,6 +2317,16 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
   mounted: function mounted() {
     this.get_books();
     this.get_genres();
+  },
+  computed: {
+    filteredBooks: function filteredBooks() {
+      var _this3 = this;
+
+      console.log(book);
+      return this.search.filter(function (book) {
+        return book.name.match(_this3.search);
+      });
+    }
   }
 });
 
@@ -2324,7 +2344,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "\n.site-header[data-v-f348271a] {\n    background-color: rgba(0, 0, 0, .85);\n    -webkit-backdrop-filter: saturate(180%) blur(20px);\n    backdrop-filter: saturate(180%) blur(20px);\n}\n.sticky-top[data-v-f348271a] {\n    position: -webkit-sticky;\n    position: sticky;\n    top: 0;\n    z-index: 1020;\n}\n.dropdown[data-v-f348271a]:hover {\n    display: block;\n}\n.menu-area[data-v-f348271a] {\n    position: static !important;\n}\n.mega-area[data-v-f348271a] {\n    position: absolute;\n    width: 100%;\n    left: 0;\n    right: 0;\n    padding: 15px;\n}\n.dropdown-item[data-v-f348271a] {\n    padding: 5px 0;\n}\n", ""]);
+exports.push([module.i, "\n.site-header[data-v-f348271a] {\n    background-color: rgba(0, 0, 0, .85);\n    -webkit-backdrop-filter: saturate(180%) blur(20px);\n    backdrop-filter: saturate(180%) blur(20px);\n}\n.sticky-top[data-v-f348271a] {\n    position: -webkit-sticky;\n    position: sticky;\n    top: 0;\n    z-index: 1020;\n}\n.dropdown[data-v-f348271a]:hover {\n    display: block;\n}\n.menu-area[data-v-f348271a] {\n    position: static !important;\n}\n.mega-area[data-v-f348271a] {\n    position: absolute;\n    width: 100%;\n    left: 0;\n    right: 0;\n    padding: 15px;\n}\n.dropdown-item[data-v-f348271a] {\n    padding: 5px 0;\n}\n.font-size-14[data-v-f348271a] {\n    font-size: 14px;\n}\n\n", ""]);
 
 // exports
 
@@ -2362,7 +2382,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.card[data-v-51777872]:hover {\n    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);\n    transition: 0.3s;\n    padding: 1px;\n}\n.dropdown[data-v-51777872]:hover {\n    display: block;\n}\n.menu-area[data-v-51777872] {\n    position: static !important;\n}\n.mega-area[data-v-51777872] {\n    position: absolute;\n    width: 100%;\n    left: 0;\n    right: 0;\n    padding: 15px;\n}\n.dropdown-item[data-v-51777872] {\n    padding: 5px 0;\n}\nselect[data-v-51777872] {\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    appearance: none;\n    outline: 0;\n    box-shadow: none;\n    border: 0 !important;\n    background: #007bff;\n    background-image: none;\n}\n\n/* Remove IE arrow */\nselect[data-v-51777872]::-ms-expand {\n    display: none;\n}\n\n/* Custom Select */\n.select[data-v-51777872] {\n    position: relative;\n    display: flex;\n    width: 16em;\n    height: 3em;\n    line-height: 3;\n    background: #dff4e8;\n    overflow: hidden;\n    border-radius: .25em;\n}\nselect[data-v-51777872] {\n    flex: 1;\n    padding: 0 .5em;\n    color: #fff;\n    cursor: pointer;\n}\n\n/* Arrow */\n.select[data-v-51777872]::after {\n    content: '\\25BC';\n    color: white;\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: 0 1em;\n    background: #007bff;\n    cursor: pointer;\n    pointer-events: none;\n    transition: .25s all ease;\n}\n\n/* Transition */\n.select[data-v-51777872]:hover::after {\n    color: #000;\n}\n\n\n\n", ""]);
+exports.push([module.i, "\n.card[data-v-51777872]:hover {\n    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;\n    transition: 0.3s;\n    transform: scale(1.1);\n}\n.dropdown[data-v-51777872]:hover {\n    display: block;\n}\n.menu-area[data-v-51777872] {\n    position: static !important;\n}\n.mega-area[data-v-51777872] {\n    position: absolute;\n    width: 100%;\n    left: 0;\n    right: 0;\n    padding: 15px;\n}\n.dropdown-item[data-v-51777872] {\n    padding: 5px 0;\n}\nselect[data-v-51777872] {\n    -webkit-appearance: none;\n    -moz-appearance: none;\n    appearance: none;\n    outline: 0;\n    box-shadow: none;\n    border: 0 !important;\n    background: #e3e3e3;\n    background-image: none;\n}\n\n/* Remove IE arrow */\nselect[data-v-51777872]::-ms-expand {\n    display: none;\n}\n\n/* Custom Select */\n.select[data-v-51777872] {\n    position: relative;\n    display: flex;\n    width: 16em;\n    height: 3em;\n    line-height: 3;\n    background: #dff4e8;\n    overflow: hidden;\n    border-radius: .25em;\n}\nselect[data-v-51777872] {\n    flex: 1;\n    padding: 0 .5em;\n    color: #000;\n    cursor: pointer;\n}\n\n/* Arrow */\n.select[data-v-51777872]::after {\n    content: '\\25BC';\n    color: white;\n    position: absolute;\n    top: 0;\n    right: 0;\n    padding: 0 1em;\n    background: #e3e3e3;\n    cursor: pointer;\n    pointer-events: none;\n    transition: .25s all ease;\n}\n\n/* Transition */\n.select[data-v-51777872]:hover::after {\n    color: #000;\n}\n.list-group-item[data-v-51777872] {\n    color: #000;\n    background-color: #ffffff;\n    padding: 0.45rem 2.15rem !important;\n    border: none !important;\n}\n.list-group-item[data-v-51777872]:hover {\n    color: #007bff;\n}\n.font-size-14[data-v-51777872]{\n    font-size: 14px;\n}\n", ""]);
 
 // exports
 
@@ -4131,7 +4151,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "bg-light" }, [
+  return _c("div", {}, [
     _c("section", {}, [
       _c("div", { staticClass: "container" }, [
         _c(
@@ -4152,23 +4172,25 @@ var render = function() {
     _vm._v(" "),
     _c("main", {}, [_c("router-view")], 1),
     _vm._v(" "),
-    _c("div", { staticClass: "container" }, [
-      _c("footer", { staticClass: "pt-4  pt-md-5 border-top" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-12 col-md" }, [
-            _c("img", {
-              staticClass: "mb-2",
-              attrs: { src: "img/logo_book.png", alt: "" }
-            }),
+    _c("section", { staticStyle: { background: "#F0F0F0" } }, [
+      _c("div", { staticClass: "container" }, [
+        _c("footer", { staticClass: "pt-4  pt-md-5 border-top" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-12 col-md" }, [
+              _c("img", {
+                staticClass: "mb-2",
+                attrs: { src: "img/logo_book.png", alt: "" }
+              }),
+              _vm._v(" "),
+              _vm._m(2)
+            ]),
             _vm._v(" "),
-            _vm._m(2)
-          ]),
-          _vm._v(" "),
-          _vm._m(3),
-          _vm._v(" "),
-          _vm._m(4),
-          _vm._v(" "),
-          _vm._m(5)
+            _vm._m(3),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _vm._m(5)
+          ])
         ])
       ])
     ])
@@ -4208,37 +4230,41 @@ var staticRenderFns = [
       [
         _c(
           "ul",
-          { staticClass: "nav justify-content-lg-end justify-content-center" },
+          { staticClass: "nav justify-content-lg-end justify-content-center " },
           [
-            _c("li", { staticClass: "nav-item active " }, [
-              _c("a", { staticClass: "nav-link  ", attrs: { href: "#" } }, [
-                _vm._v("О нас"),
-                _c("span", { staticClass: "sr-only" }, [_vm._v("(current)")])
-              ])
+            _c("li", { staticClass: "nav-item active font-size-14" }, [
+              _c(
+                "a",
+                { staticClass: "nav-link text-muted", attrs: { href: "#" } },
+                [
+                  _vm._v("О нас"),
+                  _c("span", { staticClass: "sr-only" }, [_vm._v("(current)")])
+                ]
+              )
             ]),
             _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c("a", { staticClass: "nav-link  ", attrs: { href: "#" } }, [
-                _vm._v("Новости и мероприятия")
-              ])
+            _c("li", { staticClass: "nav-item font-size-14" }, [
+              _c(
+                "a",
+                { staticClass: "nav-link text-muted", attrs: { href: "#" } },
+                [_vm._v("Новости и мероприятия")]
+              )
             ]),
             _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c("a", { staticClass: "nav-link  ", attrs: { href: "#" } }, [
-                _vm._v("Доставка и оплата")
-              ])
+            _c("li", { staticClass: "nav-item font-size-14" }, [
+              _c(
+                "a",
+                { staticClass: "nav-link text-muted", attrs: { href: "#" } },
+                [_vm._v("Доставка и оплата")]
+              )
             ]),
             _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c("a", { staticClass: "nav-link t", attrs: { href: "#" } }, [
-                _vm._v("Что почитать?")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c("a", { staticClass: "nav-link  ", attrs: { href: "#" } }, [
-                _vm._v("Сотрудничество")
-              ])
+            _c("li", { staticClass: "nav-item font-size-14" }, [
+              _c(
+                "a",
+                { staticClass: "nav-link text-muted", attrs: { href: "#" } },
+                [_vm._v("Что почитать?")]
+              )
             ])
           ]
         ),
@@ -4265,25 +4291,25 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("ul", { staticClass: "list-unstyled text-small" }, [
       _c("li", [
-        _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+        _c("a", { staticClass: "text-muted small", attrs: { href: "#" } }, [
           _vm._v("О компании")
         ])
       ]),
       _vm._v(" "),
       _c("li", [
-        _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+        _c("a", { staticClass: "text-muted small", attrs: { href: "#" } }, [
           _vm._v("Новости и мероприятия")
         ])
       ]),
       _vm._v(" "),
       _c("li", [
-        _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+        _c("a", { staticClass: "text-muted small", attrs: { href: "#" } }, [
           _vm._v("Доставка и оплата")
         ])
       ]),
       _vm._v(" "),
       _c("li", [
-        _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+        _c("a", { staticClass: "text-muted small", attrs: { href: "#" } }, [
           _vm._v("Карта сайта")
         ])
       ])
@@ -4298,25 +4324,25 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("ul", { staticClass: "list-unstyled text-small" }, [
         _c("li", [
-          _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+          _c("a", { staticClass: "text-muted small", attrs: { href: "#" } }, [
             _vm._v("Бестселлеры")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+          _c("a", { staticClass: "text-muted small", attrs: { href: "#" } }, [
             _vm._v("Скоро в продаже")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+          _c("a", { staticClass: "text-muted small", attrs: { href: "#" } }, [
             _vm._v("Популярные авторы")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+          _c("a", { staticClass: "text-muted small", attrs: { href: "#" } }, [
             _vm._v("Интервью с авторами")
           ])
         ])
@@ -4332,25 +4358,25 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("ul", { staticClass: "list-unstyled text-small" }, [
         _c("li", [
-          _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+          _c("a", { staticClass: "text-muted small", attrs: { href: "#" } }, [
             _vm._v("Библиотекам")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+          _c("a", { staticClass: "text-muted small", attrs: { href: "#" } }, [
             _vm._v("Авторам")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+          _c("a", { staticClass: "text-muted small", attrs: { href: "#" } }, [
             _vm._v("Партнерам")
           ])
         ]),
         _vm._v(" "),
         _c("li", [
-          _c("a", { staticClass: "text-muted", attrs: { href: "#" } }, [
+          _c("a", { staticClass: "text-muted small", attrs: { href: "#" } }, [
             _vm._v("Издательствам")
           ])
         ])
@@ -5041,7 +5067,44 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c("section", { staticClass: "pt-2" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-12 col-lg-9" }, [
+            _c("div", { staticClass: "input-group pt-3" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.search,
+                    expression: "search"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "search",
+                  type: "text",
+                  placeholder: "Название книги,автор"
+                },
+                domProps: { value: _vm.search },
+                on: {
+                  keyup: _vm.get_books,
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.search = $event.target.value
+                  }
+                }
+              })
+            ])
+          ])
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c("section", { staticClass: "pt-2" }, [
       _c("div", { staticClass: "container" }, [
@@ -5051,14 +5114,12 @@ var render = function() {
               "div",
               { staticClass: "list-group" },
               [
-                _c("p", { staticClass: "font-weight-bold text-center" }, [
-                  _vm._v("Жанры")
-                ]),
+                _c("h4", { staticClass: "text-muted" }, [_vm._v("Жанры")]),
                 _vm._v(" "),
                 _c(
                   "a",
                   {
-                    staticClass: "list-group-item list-group-item-action small",
+                    staticClass: "list-group-item list-group-item-action ",
                     class: { active: _vm.genre_id === 0 },
                     attrs: { href: "#" },
                     on: {
@@ -5075,7 +5136,7 @@ var render = function() {
                     "a",
                     {
                       staticClass:
-                        "list-group-item list-group-item-action small",
+                        "list-group-item list-group-item-action font-size-14",
                       class: { active: _vm.genre_id === genre.id },
                       attrs: { href: "#" },
                       on: {
@@ -5101,28 +5162,35 @@ var render = function() {
                 { staticClass: "row" },
                 _vm._l(_vm.paginateData.data, function(book) {
                   return _c("div", { staticClass: "col-lg-3 col-12" }, [
-                    _c("div", { staticClass: "card mb-3" }, [
-                      _c("img", { attrs: { src: book.image, alt: "" } }),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "card-body" }, [
-                        _c("p", { staticClass: " text-muted" }, [
-                          _vm._v(" " + _vm._s(book.author.name))
-                        ]),
+                    _c(
+                      "div",
+                      {
+                        staticClass: "card mb-4",
+                        staticStyle: { transition: "0.15s all ease-in-out" }
+                      },
+                      [
+                        _c("img", { attrs: { src: book.image, alt: "" } }),
                         _vm._v(" "),
-                        _c(
-                          "p",
-                          { staticClass: "card-title font-weight-bold h5" },
-                          [_vm._v(" " + _vm._s(book.name))]
-                        ),
-                        _vm._v(" "),
-                        _c("span", {}, [
-                          _vm._v("Цена: "),
-                          _c("span", { staticClass: "font-weight-bold" }, [
-                            _vm._v(" " + _vm._s(book.price))
+                        _c("div", { staticClass: "card-body" }, [
+                          _c("p", { staticClass: " text-muted" }, [
+                            _vm._v(" " + _vm._s(book.author.name))
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "p",
+                            { staticClass: "card-title font-weight-bold h5" },
+                            [_vm._v(" " + _vm._s(book.name))]
+                          ),
+                          _vm._v(" "),
+                          _c("span", {}, [
+                            _vm._v("Цена: "),
+                            _c("span", { staticClass: "font-weight-bold" }, [
+                              _vm._v(" " + _vm._s(book.price))
+                            ])
                           ])
                         ])
-                      ])
-                    ])
+                      ]
+                    )
                   ])
                 }),
                 0
@@ -5145,35 +5213,33 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "pt-2" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-12 col-lg-12 py-2" }, [
-            _c("div", { staticClass: "select" }, [
-              _c("select", { attrs: { name: "cars", id: "cars" } }, [
-                _c("option", { attrs: { value: "children" } }, [
-                  _vm._v("Детская литература")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "saab" } }, [
-                  _vm._v("Художественная литература")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "business" } }, [
-                  _vm._v("Бизнес-книги")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "psihology" } }, [
-                  _vm._v("Психология")
-                ]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "fantasy" } }, [
-                  _vm._v("Фантастика")
-                ])
-              ])
+    return _c("div", { staticClass: "col-12 col-lg-3 py-2" }, [
+      _c("div", { staticClass: "select" }, [
+        _c(
+          "select",
+          { staticClass: "font-size-14", attrs: { name: "cars", id: "cars" } },
+          [
+            _c("option", { attrs: { value: "children" } }, [
+              _vm._v("Детская литература")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "saab" } }, [
+              _vm._v("Художественная литература")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "business" } }, [
+              _vm._v("Бизнес-книги")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "psihology" } }, [
+              _vm._v("Психология")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "fantasy" } }, [
+              _vm._v("Фантастика")
             ])
-          ])
-        ])
+          ]
+        )
       ])
     ])
   }

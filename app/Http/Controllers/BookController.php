@@ -14,8 +14,10 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
+
         $type_criterion = ['type_id', '<>', 0];
         $genre_criterion = ['genre_id', '<>', 0];
+        $search_criterion = ['name', 'like', '%'.$request->search_text.'%'];
         if ($request->type_id != 0) {
             $type_criterion = ['type_id', $request->type_id];
         }
@@ -23,6 +25,7 @@ class BookController extends Controller
             $genre_criterion = ['genre_id', $request->genre_id];
         }
         $books = Book::with('author')->where([
+            $search_criterion,
             $type_criterion,
             $genre_criterion,
         ])->paginate(30);
