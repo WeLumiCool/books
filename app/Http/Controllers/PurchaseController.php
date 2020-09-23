@@ -38,6 +38,11 @@ class PurchaseController extends Controller
         //
     }
 
+    public function new_purchase(Request $request)
+    {
+        dd($request);
+        $purchase = new Purchase();
+    }
     /**
      * Display the specified resource.
      *

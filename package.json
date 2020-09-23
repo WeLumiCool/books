@@ -26,6 +26,7 @@
     "dependencies": {
         "laravel-vue-pagination": "^2.3.1",
         "vue-axios": "^2.1.5",
-        "vue-router": "^3.4.3"
+        "vue-router": "^3.4.3",
+        "vue-session": "^1.0.0"
     }
 }
