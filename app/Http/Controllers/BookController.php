@@ -56,9 +56,10 @@ class BookController extends Controller
      * @param  \App\Models\Book $book
      * @return \Illuminate\Http\Response
      */
-    public function show(Book $book)
+    public function show($id)
     {
-        //
+        $book = Book::with('author')->with('genre')->with('type')->find($id);
+        return response()->json(compact('book'));
     }
 
     /**

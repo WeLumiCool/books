@@ -6,105 +6,46 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="row border rounded p-2 my-2 bg-white justify-content-center ">
+                    <div v-for="(book,index) in basket" class="row border rounded p-2 my-2 bg-white justify-content-center ">
                         <div class="col-12 col-lg-2 d-flex justify-content-lg-start justify-content-center">
-                            <img :src="'img/i699736 (2).jpg'" alt="" height="150px" width="150px">
+                            <img :src="book.image" alt="" height="150px" width="150px">
                         </div>
                         <div class="col-lg-4 d-flex justify-content-lg-start justify-content-center  align-items-center">
-                            <p class="font-weight-bold h5">Сад</p> <br>
+                            <p class="font-weight-bold h5">{{book.name}}</p> <br>
                         </div>
                         <div class="col-lg-3 d-flex d-flex justify-content-lg-start justify-content-center align-items-center">
                             <div class="amount-form form">
                                 <div class="amount-form__group">
                                     <button data-max="999"
                                             class="amount-form__control amount-form__control_dec js-amount-control border-none"
-                                            data-value="dec" style="border: none!important;">−
+                                            style="border: none!important;" @click="change_basket(index, -1)">−
                                     </button>
-                                    <input data-max="999" id="" type="text"
-                                           class="amount-form__input js-amount-input" value="1" maxlength="3">
+                                    <input data-max="999" type="text"
+                                           class="amount-form__input js-amount-input" :value="book.count" maxlength="3">
                                     <button data-max="999"
                                             class="amount-form__control amount-form__control_inc js-amount-control border-none"
-                                            data-value="inc" style="border: none!important;">+
+                                            style="border: none!important;" @click="change_basket(index, 1)">+
                                     </button>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-2 d-flex justify-content-lg-start justify-content-center align-items-center">
-                            <p class="font-weight-bold h6">500 <span>сом</span></p>
+                            <p class="font-weight-bold h6">{{ book.price }} <span>сом</span></p>
                         </div>
                         <div class="col-lg-1 d-flex justify-content-lg-start justify-content-center align-items-center">
-                            <button class="btn btn-danger rounded-pill"><i class="far fa-trash-alt"></i></button>
+                            <button class="btn btn-danger rounded-pill" @click="delete_book(index)"><i class="far fa-trash-alt"></i></button>
                         </div>
                     </div>
-                    <div class="row border rounded p-2 my-2 bg-white justify-content-center ">
-                        <div class="col-12 col-lg-2 d-flex justify-content-lg-start justify-content-center">
-                            <img :src="'img/i699736 (2).jpg'" alt="" height="150px" width="150px">
-                        </div>
-                        <div class="col-lg-4 d-flex justify-content-lg-start justify-content-center  align-items-center">
-                            <p class="font-weight-bold h5">Сад</p> <br>
-                        </div>
-                        <div class="col-lg-3 d-flex d-flex justify-content-lg-start justify-content-center align-items-center">
-                            <div class="amount-form form">
-                                <div class="amount-form__group">
-                                    <button data-max="999"
-                                            class="amount-form__control amount-form__control_dec js-amount-control border-none"
-                                            data-value="dec" style="border: none!important;">−
-                                    </button>
-                                    <input data-max="999" id="" type="text"
-                                           class="amount-form__input js-amount-input" value="1" maxlength="3">
-                                    <button data-max="999"
-                                            class="amount-form__control amount-form__control_inc js-amount-control border-none"
-                                            data-value="inc" style="border: none!important;">+
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 d-flex justify-content-lg-start justify-content-center align-items-center">
-                            <p class="font-weight-bold h6">500 <span>сом</span></p>
-                        </div>
-                        <div class="col-lg-1 d-flex justify-content-lg-start justify-content-center align-items-center">
-                            <button class="btn btn-danger rounded-pill"><i class="far fa-trash-alt"></i></button>
-                        </div>
-                    </div>
-                    <div class="row border rounded p-2 my-2 bg-white justify-content-center ">
-                        <div class="col-12 col-lg-2 d-flex justify-content-lg-start justify-content-center">
-                            <img :src="'img/i699736 (2).jpg'" alt="" height="150px" width="150px">
-                        </div>
-                        <div class="col-lg-4 d-flex justify-content-lg-start justify-content-center  align-items-center">
-                            <p class="font-weight-bold h5">Сад</p> <br>
-                        </div>
-                        <div class="col-lg-3 d-flex d-flex justify-content-lg-start justify-content-center align-items-center">
-                            <div class="amount-form form">
-                                <div class="amount-form__group">
-                                    <button data-max="999"
-                                            class="amount-form__control amount-form__control_dec js-amount-control border-none"
-                                            data-value="dec" style="border: none!important;">−
-                                    </button>
-                                    <input data-max="999" id="" type="text"
-                                           class="amount-form__input js-amount-input" value="1" maxlength="3">
-                                    <button data-max="999"
-                                            class="amount-form__control amount-form__control_inc js-amount-control border-none"
-                                            data-value="inc" style="border: none!important;">+
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 d-flex justify-content-lg-start justify-content-center align-items-center">
-                            <p class="font-weight-bold h6">500 <span>сом</span></p>
-                        </div>
-                        <div class="col-lg-1 d-flex justify-content-lg-start justify-content-center align-items-center">
-                            <button class="btn btn-danger rounded-pill"><i class="far fa-trash-alt"></i></button>
-                        </div>
-                    </div>
-
                 </div>
                 <div class="col-12 row justify-content-lg-end justify-content-center py-3">
                     <div class="">
                         <div class="col-12">
-                            <p class="h5 font-weight-bold">Итого: <span> 1500 </span> <span>cом</span></p>
+                            <p class="h5 font-weight-bold">Итого: <span> {{total}} </span> <span>cом</span></p>
                         </div>
                         <div class="col-12 pt-3">
-                            <button class="btn btn-danger text-uppercase" data-toggle="modal" data-target="#exampleModal" style="padding: 16px 36px 15px 31px;">Оформить заказ</button>
+                            <button class="btn btn-danger text-uppercase" data-toggle="modal"
+                                    data-target="#exampleModal" style="padding: 16px 36px 15px 31px;">Оформить заказ
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -127,13 +68,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="admin@gmail.com">
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                       aria-describedby="emailHelp" placeholder="admin@gmail.com">
                             </div>
                             <div class="form-group">
                                 <label for="telephone">Телефон</label>
                                 <input type="tel" class="form-control" id="telephone" placeholder="+996550123123">
                             </div>
-                            <button type="submit" class="btn btn-primary">Отправить</button>
+                            <button type="submit" class="btn btn-primary" @click="purchased()">Отправить</button>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -146,8 +88,59 @@
 </template>
 
 <script>
+    const axios = require('axios');
     export default {
-        name: "Basket"
+        data() {
+            return {
+                basket: {},
+                total: 0,
+            }
+        },
+        methods: {
+            get_basket() {
+                if (this.$session.has('basket')) {
+                    this.basket = this.$session.get('basket');
+                    this.calc_total();
+                }
+            },
+            calc_total() {
+                for (let book in this.basket) {
+                    this.total += this.basket[book].count * this.basket[book].price;
+                }
+            },
+            change_basket(book_id, value /* 1 or -1*/) {
+            if (this.basket[book_id].count === 1 && value === -1) {
+                if(confirm('вы точно хотите удалить?')){
+                    delete this.basket[book_id];
+                    this.$session.set('basket', this.basket);
+                    this.basket = this.$session.get('basket');
+                }
+                }
+                else if (this.basket[book_id].count !== 0 && value !== 0) {
+                    this.basket[book_id].count += value;
+                    this.$session.set('basket', this.basket);
+                }
+                this.total = 0;
+                this.calc_total();
+            },
+            delete_book(book_id){
+                delete this.basket[book_id];
+                this.$session.set('basket', this.basket);
+                this.basket = this.$session.get('basket');
+                this.total = 0;
+                this.calc_total();
+            },
+            purchased(){
+                let basket = this.basket;
+                let total = this.total;
+                axios.post('api/purchasing', {basket, total}).then(response => {
+
+                })
+            }
+        },
+        mounted() {
+            this.get_basket();
+        },
     }
 </script>
 

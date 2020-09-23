@@ -16,14 +16,12 @@
                 <div class="col-12 col-lg-9">
                     <div class="row">
                         <div class="col-lg-8  order-lg-1">
-                            <p class="font-weight-bold h3">САД. СТЕПНОВА М. </p>
-                            <p class="font-weight-bold h6  pt-2">Степнова М.</p>
-                            <span class="font-weight-bold">Объем: <span class="text-muted">123 <span>стр</span></span></span><br>
-                            <span class="font-weight-bold">Жанр: <span class="text-muted">Зарубежные детективы, Крутой детектив</span></span>
-                            <p class="font-weight-bold">Издательство: <span class="text-muted"> АСТ; Редакция Елены Шубиной</span></p>
+                            <p class="font-weight-bold h3">{{ book.name }}</p>
+                            <p class="font-weight-bold h6  pt-2">{{ book.author.name }}</p>
+                            <span class="font-weight-bold">Жанр: <span
+                                    class="text-muted">{{ book.genre.name }}</span></span>
                             <p class="font-weight-bold">Аннотация: <br>
-                            <span class="text-muted">«Сад» — новый роман Марины Степновой, автора бестселлера «Женщины Лазаря» (премия «Большая книга»), романов «Хирург», «Безбожный переулок» и сборника «Где?то под Гроссето».
-                                Середина девятнадцатого века. У князя и княгини Борятинских рождается поздний и никем не жданный ребенок — девочка, которая буквально разваливает семью, прежде казавшуюся идеальной. Туся с самого начала не такая, как все. В строгих рамках общества, полного условностей, когда любой в первую очередь принадлежит роду, а не себе самому, она ведет себя как абсолютно — ненормально даже — независимый человек. Сама принимает решения — когда родиться и когда заговорить. Как вести себя, чем увлекаться, кого любить или ненавидеть. История о том, как трудно быть свободным человеком в несвободном мире.
+                                <span class="text-muted">{{ book.desc }}
                             </span></p>
                         </div>
                         <div class="col-lg-4 product_checkout  order-lg-2">
@@ -32,29 +30,25 @@
                                 <div class="d-flex border p-2 rounded">
                                     <div class="headerSectionProduct">
                                         <div class="priceTargetSection">
-                                            <span class="finalProductPrice">300 </span>
+                                            <span class="finalProductPrice">{{ book.price }}</span>
                                             <span>сом</span>
                                         </div>
                                     </div>
                                     <div class="cuantityOfProduct" id="RF-PRD5">
-                                        <div class="buttonTriggers buttonLess">-</div>
-                                        <input type="number" class="productCuantityInput" min="0" value="0" readonly="">
-                                        <div class="buttonTriggers buttonMore">+</div>
+                                        <div class="buttonTriggers buttonLess" @click="change_count_book(-1)">-</div>
+                                        <input type="number" class="productCuantityInput" :value="count_book" min="0"
+                                               readonly="">
+                                        <div class="buttonTriggers buttonMore" @click="change_count_book(1)">+</div>
                                     </div>
                                 </div>
 
                             </div>
                             <div class="checkoutPrice py-3">
                                 <div class="separatorPrices">
-                                    <span>Доставка</span>
-                                    <div id="shipingTotal">100<span> сом</span></div>
-                                </div>
-                                <div class="separatorPrices">
                                     <span>Итого:</span>
-                                    <div id="priceTotal">400<span> сом</span></div>
+                                    <div id="priceTotal">{{ book.price * count_book }}<span> сом</span></div>
                                 </div>
                             </div>
-                            <button class="col-12 btn btn-danger text-uppercase">Купить</button>
                         </div>
                     </div>
                 </div>
@@ -64,8 +58,63 @@
 </template>
 
 <script>
+    const axios = require('axios');
     export default {
-        name: "Show"
+        data() {
+            return {
+                book: {
+                    author: {name: ''},
+                    genre: {name: ''},
+                    type: {name: ''},
+                },
+                count_book: 0,
+                total_price: 0,
+                basket: {},
+            }
+        },
+        methods: {
+            get_book() {
+                axios.get(`api/get_book/${this.$route.params.id}`)
+                    .then((response) => {
+                        this.book = response.data.book;
+                        this.get_basket();
+                    });
+            },
+            get_basket() {
+                if (this.$session.has('basket')) {
+                    this.basket = this.$session.get('basket');
+                    if (this.basket.hasOwnProperty(this.book.id)) {
+                        this.count_book = this.basket[this.book.id].count;
+                    }
+                }
+            },
+            change_count_book(value /* 1 or -1*/) {
+                if (this.count_book === 0 && value === 1) {
+                    this.basket[this.book.id.toString()] = {
+                        "count": 1,
+                        "name": this.book.name,
+                        "image": this.book.image,
+                        "price": this.book.price,
+                    };
+                    this.count_book = 1;
+                    this.$session.set('basket', this.basket);
+                }
+                else if (this.count_book === 1 && value === -1) {
+                    delete this.basket[this.book.id];
+                    this.$session.set('basket', this.basket);
+                    this.count_book = 0;
+                }
+                else if (this.count_book !== 0 && value !== 0) {
+                    this.count_book += value;
+                    this.basket[this.book.id].count = this.count_book;
+                    this.$session.set('basket', this.basket);
+                }
+            }
+        },
+        mounted() {
+            // this.$session.set('basket',{"1":{"count":4, "name":"dawdawd"}, "2":{"count":5}});
+            this.get_book();
+        },
     }
 </script>
 
@@ -77,6 +126,7 @@
         padding: 20px;
         border-radius: 6px;
     }
+
     .productName {
         color: #4E5150;
         font-weight: 600;
@@ -149,6 +199,7 @@
         font-size: 20px;
         z-index: 999;
     }
+
     .separatorPrices {
         padding: 5px 0;
         border-top: 1px solid #bdbdbd;
