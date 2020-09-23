@@ -3,13 +3,21 @@
         <section class="pt-2">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-lg-12 pt-2">
-                        <label for="types_filter">Выберите Тип:</label>
-                        <select id="types_filter" @change="filter_type($event.target.value)">
-                            <option value="0">Все</option>
-                            <option v-for="type in types" :value="type.id">{{ type.name }}</option>
-                        </select>
+                    <div class="col-12 col-lg-3 py-2">
+                        <div class="select">
+                            <select  class="font-size-14" @change="filter_type($event.target.value)">
+                                <option value="0">Все</option>
+                                <option v-for="type in types" :value="type.id">{{ type.name }}</option>
+                            </select>
+                        </div>
                     </div>
+                    <div class="col-12 col-lg-9">
+                        <div class="input-group pt-3">
+                            <input id="search" type="text" v-model="search" @keyup="get_books" class="form-control"
+                                   placeholder="Название книги,автор">
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -18,21 +26,20 @@
                 <div class="row">
                     <div class="col-12 col-lg-3">
                         <div class="list-group">
-                            <p class="font-weight-bold text-center">Жанры</p>
+                            <h4 class="text-muted">Жанры</h4>
                             <a href="#" @click="filter_genre()"
-                               class="list-group-item list-group-item-action small"
+                               class="list-group-item list-group-item-action "
                                :class="{active:genre_id === 0}">Все</a>
                             <a v-for="genre in genres" href="#" @click="filter_genre(genre.id)"
-                               class="list-group-item list-group-item-action small"
+                               class="list-group-item list-group-item-action font-size-14"
                                :class="{active:genre_id === genre.id}">{{ genre.name }}</a>
-
                         </div>
                     </div>
                     <div class="col-12 col-lg-9">
                         <div class="row">
                             <div v-for="book in paginateData.data" class="col-lg-3 col-12">
                                 <router-link :to="{name:'show', params:{id:book.id}}">
-                                    <div class="card mb-3">
+                                    <div class="card mb-3" style="transition: 0.15s all ease-in-out;">
                                         <img :src="book.image" alt="">
                                         <div class="card-body">
                                             <p class=" text-muted"> {{ book.author.name }}</p>
@@ -46,6 +53,7 @@
                         </div>
                         <pagination :data="paginateData" @pagination-change-page="get_books"></pagination>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -61,6 +69,7 @@
                 types: [],
                 genre_id: 0,
                 type_id: 0,
+                search: '',
             }
         },
         methods: {
@@ -78,7 +87,8 @@
                 axios.get('api/get_books?page=' + page, {
                     params: {
                         genre_id: this.genre_id,
-                        type_id: this.type_id
+                        type_id: this.type_id,
+                        search: this.search
                     }
                 }).then(response => {
                     this.paginateData = response.data.books;
@@ -103,10 +113,11 @@
 
 <style scoped>
     .card:hover {
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
         transition: 0.3s;
-        padding: 1px;
+        transform: scale(1.1);
     }
+
 
     .dropdown:hover {
         display: block;
@@ -126,5 +137,76 @@
 
     .dropdown-item {
         padding: 5px 0;
+    }
+
+    select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+        outline: 0;
+        box-shadow: none;
+        border: 0 !important;
+        background: #e3e3e3;
+        background-image: none;
+    }
+
+    /* Remove IE arrow */
+    select::-ms-expand {
+        display: none;
+    }
+
+    /* Custom Select */
+    .select {
+        position: relative;
+        display: flex;
+        width: 16em;
+        height: 3em;
+        line-height: 3;
+        background: #dff4e8;
+        overflow: hidden;
+        border-radius: .25em;
+    }
+
+    select {
+        flex: 1;
+        padding: 0 .5em;
+        color: #000;
+        cursor: pointer;
+    }
+
+    /* Arrow */
+    .select::after {
+        content: '\25BC';
+        color: white;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 0 1em;
+        background: #e3e3e3;
+        cursor: pointer;
+        pointer-events: none;
+        -webkit-transition: .25s all ease;
+        -o-transition: .25s all ease;
+        transition: .25s all ease;
+    }
+
+    /* Transition */
+    .select:hover::after {
+        color: #000;
+    }
+
+    .list-group-item {
+        color: #000;
+        background-color: #ffffff;
+        padding: 0.45rem 2.15rem !important;
+        border: none !important;
+    }
+
+    .list-group-item:hover {
+        color: #007bff;
+    }
+    .font-size-14{
+        font-size: 14px;
     }
 </style>
