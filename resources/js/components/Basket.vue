@@ -6,7 +6,8 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div v-for="(book,index) in basket" class="row border rounded p-2 my-2 bg-white justify-content-center ">
+                    <div v-for="(book,index) in basket"
+                         class="row border rounded p-2 my-2 bg-white justify-content-center ">
                         <div class="col-12 col-lg-2 d-flex justify-content-lg-start justify-content-center">
                             <img :src="book.image" alt="" height="150px" width="150px">
                         </div>
@@ -33,7 +34,8 @@
                             <p class="font-weight-bold h6">{{ book.price }} <span>сом</span></p>
                         </div>
                         <div class="col-lg-1 d-flex justify-content-lg-start justify-content-center align-items-center">
-                            <button class="btn btn-danger rounded-pill" @click="delete_book(index)"><i class="far fa-trash-alt"></i></button>
+                            <button class="btn btn-danger rounded-pill" @click="delete_book(index)"><i
+                                    class="far fa-trash-alt"></i></button>
                         </div>
                     </div>
                 </div>
@@ -63,19 +65,15 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-group">
-                                <label for="name">Имя</label>
-                                <input type="text" class="form-control" id="name" placeholder="Турсунбек">
+                                <label>Email</label>
+                                <input type="email" class="form-control" v-model="email"
+                                       aria-describedby="emailHelp" placeholder="admin@gmail.com" required>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                       aria-describedby="emailHelp" placeholder="admin@gmail.com">
+                                <label>Телефон</label>
+                                <input type="tel" class="form-control" v-model="phone" placeholder="+996550123123" required>
                             </div>
-                            <div class="form-group">
-                                <label for="telephone">Телефон</label>
-                                <input type="tel" class="form-control" id="telephone" placeholder="+996550123123">
-                            </div>
-                            <button type="submit" class="btn btn-primary" @click="purchased()">Отправить</button>
+                            <button type="button" class="btn btn-primary" @click="purchased()">Отправить</button>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -94,6 +92,8 @@
             return {
                 basket: {},
                 total: 0,
+                phone: '12312312321',
+                email: 'dawd@dawdw.com',
             }
         },
         methods: {
@@ -109,12 +109,12 @@
                 }
             },
             change_basket(book_id, value /* 1 or -1*/) {
-            if (this.basket[book_id].count === 1 && value === -1) {
-                if(confirm('вы точно хотите удалить?')){
-                    delete this.basket[book_id];
-                    this.$session.set('basket', this.basket);
-                    this.basket = this.$session.get('basket');
-                }
+                if (this.basket[book_id].count === 1 && value === -1) {
+                    if (confirm('вы точно хотите удалить?')) {
+                        delete this.basket[book_id];
+                        this.$session.set('basket', this.basket);
+                        this.basket = this.$session.get('basket');
+                    }
                 }
                 else if (this.basket[book_id].count !== 0 && value !== 0) {
                     this.basket[book_id].count += value;
@@ -122,19 +122,30 @@
                 }
                 this.total = 0;
                 this.calc_total();
+                this.$parent.counter_books_in_basket();
             },
-            delete_book(book_id){
-                delete this.basket[book_id];
-                this.$session.set('basket', this.basket);
-                this.basket = this.$session.get('basket');
-                this.total = 0;
-                this.calc_total();
+            delete_book(book_id) {
+                if (confirm('вы точно хотите удалить?')) {
+                    delete this.basket[book_id];
+                    this.$session.set('basket', this.basket);
+                    this.basket = this.$session.get('basket');
+                    this.total = 0;
+                    this.calc_total();
+                    this.$parent.counter_books_in_basket();
+                }
             },
-            purchased(){
+            purchased() {
                 let basket = this.basket;
                 let total = this.total;
-                axios.post('api/purchasing', {basket, total}).then(response => {
-
+                console.log(this.phone);
+                let phone = this.phone;
+                let email = this.email;
+                axios.post('api/purchasing', {basket, total, phone, email}).then(response => {
+                    $('#exampleModal').modal('hide');
+                    this.$session.destroy();
+                    this.basket = {};
+                    this.total = 0;
+                    this.$parent.counter_books_in_basket();
                 })
             }
         },

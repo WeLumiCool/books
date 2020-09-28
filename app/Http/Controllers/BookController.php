@@ -14,7 +14,7 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-
+        
         $type_criterion = ['type_id', '<>', 0];
         $genre_criterion = ['genre_id', '<>', 0];
         $search_criterion = ['name', 'like', '%'.$request->search_text.'%'];

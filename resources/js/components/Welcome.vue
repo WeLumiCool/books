@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-12 col-lg-3 py-2">
                         <div class="select">
-                            <select  class="font-size-14" @change="filter_type($event.target.value)">
+                            <select class="font-size-14" @change="filter_type($event.target.value)">
                                 <option value="0">Все</option>
                                 <option v-for="type in types" :value="type.id">{{ type.name }}</option>
                             </select>
@@ -28,7 +28,7 @@
                         <div class="list-group">
                             <h4 class="text-muted">Жанры</h4>
                             <a href="#" @click="filter_genre()"
-                               class="list-group-item list-group-item-action "
+                               class="list-group-item list-group-item-action"
                                :class="{active:genre_id === 0}">Все</a>
                             <a v-for="genre in genres" href="#" @click="filter_genre(genre.id)"
                                class="list-group-item list-group-item-action font-size-14"
@@ -38,14 +38,13 @@
                     <div class="col-12 col-lg-9">
                         <div class="row">
                             <div v-for="book in paginateData.data" class="col-lg-3 col-12">
-                                <router-link :to="{name:'show', params:{id:book.id}}">
+                                <router-link :to="{name:'show', params:{id:book.id}}" style="text-decoration: none">
                                     <div class="card mb-3" style="transition: 0.15s all ease-in-out;">
                                         <img :src="book.image" alt="">
                                         <div class="card-body">
-                                            <p class=" text-muted"> {{ book.author.name }}</p>
-                                            <p class="card-title font-weight-bold h5"> {{ book.name }}</p>
-                                            <span class="">Цена: <span
-                                                    class="font-weight-bold"> {{ book.price }}</span></span>
+                                            <p class="text-muted font-size-14"> {{ book.author.name }}</p>
+                                            <p class="text-dark card-title font-weight-bold h6"> {{ book.name }}</p>
+                                            <span class="text-dark font-size-14" >Цена: <span class="font-weight-bold"> {{ book.price }}</span></span>
                                         </div>
                                     </div>
                                 </router-link>
@@ -88,7 +87,7 @@
                     params: {
                         genre_id: this.genre_id,
                         type_id: this.type_id,
-                        search: this.search
+                        search_text: this.search
                     }
                 }).then(response => {
                     this.paginateData = response.data.books;
@@ -117,7 +116,6 @@
         transition: 0.3s;
         transform: scale(1.1);
     }
-
 
     .dropdown:hover {
         display: block;
@@ -206,7 +204,8 @@
     .list-group-item:hover {
         color: #007bff;
     }
-    .font-size-14{
+
+    .font-size-14 {
         font-size: 14px;
     }
 </style>

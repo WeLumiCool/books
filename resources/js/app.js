@@ -3,8 +3,12 @@ import VueRouter from 'vue-router'
 import VueSession from 'vue-session'
 
 Vue.component('pagination', require('laravel-vue-pagination'));
+
+var  options  =  {
+    persist : true
+}
 Vue.use(VueRouter);
-Vue.use(VueSession);
+Vue.use(VueSession, options);
 
 import App from './App.vue'
 

@@ -4,7 +4,8 @@
 
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light px-lg-0">
-                    <router-link class="navbar-brand" :to="{name:'home'}"><img :src="'img/logo_book.svg'" alt=""></router-link>
+                    <router-link class="navbar-brand" :to="{name:'home'}"><img :src="'img/logo_book.svg'" alt="">
+                    </router-link>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                             aria-label="Toggle navigation">
@@ -30,7 +31,8 @@
                         <ul class="navbar-nav  mt-2 mt-lg-0">
                             <li>
                                 <a href="tel:+996707861441" class="pr-5 ">+996 707 86 14 41</a>
-                                <router-link :to="{name:'basket'}"><i class="fas fa-shopping-cart   pt-1 "></i></router-link>
+                                <router-link :to="{name:'basket'}"><i class="fas fa-shopping-cart   pt-1 "></i><span
+                                        class="pl-1">{{ count_basket }}</span></router-link>
                             </li>
                         </ul>
                     </div>
@@ -98,9 +100,26 @@
 <script>
     export default {
         data() {
-            return {}
+            return {
+                count_basket: 0,
+            }
+        },
+        methods: {
+            counter_books_in_basket() {
+                this.count_basket = 0;
+                if (this.$session.has('basket')) {
+                    let basket = this.$session.get('basket');
+                    for (let book_id in basket) {
+                        this.count_basket += basket[book_id].count;
+                    }
+                }
+            },
+        },
+        mounted() {
+            this.counter_books_in_basket();
         },
     }
+
 </script>
 
 <style scoped>

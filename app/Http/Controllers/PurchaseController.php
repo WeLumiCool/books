@@ -30,7 +30,7 @@ class PurchaseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -40,13 +40,20 @@ class PurchaseController extends Controller
 
     public function new_purchase(Request $request)
     {
-        dd($request);
+//        dd($request->basket);
         $purchase = new Purchase();
+        $purchase->books = json_encode($request->basket);
+        $purchase->email = $request->email;
+        $purchase->phone = $request->phone;
+        $purchase->total = $request->total;
+        $purchase->save();
+        return response()->json([],200);
     }
+
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Purchase  $purchase
+     * @param  \App\Models\Purchase $purchase
      * @return \Illuminate\Http\Response
      */
     public function show(Purchase $purchase)
@@ -57,7 +64,7 @@ class PurchaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Purchase  $purchase
+     * @param  \App\Models\Purchase $purchase
      * @return \Illuminate\Http\Response
      */
     public function edit(Purchase $purchase)
@@ -68,8 +75,8 @@ class PurchaseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Purchase  $purchase
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Purchase $purchase
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Purchase $purchase)
@@ -80,7 +87,7 @@ class PurchaseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Purchase  $purchase
+     * @param  \App\Models\Purchase $purchase
      * @return \Illuminate\Http\Response
      */
     public function destroy(Purchase $purchase)

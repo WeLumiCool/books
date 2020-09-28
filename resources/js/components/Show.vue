@@ -109,6 +109,7 @@
                     this.basket[this.book.id].count = this.count_book;
                     this.$session.set('basket', this.basket);
                 }
+                this.$parent.counter_books_in_basket();
             }
         },
         mounted() {
