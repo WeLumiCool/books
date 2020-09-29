@@ -21,7 +21,7 @@
                                             style="border: none!important;" @click="change_basket(index, -1)">−
                                     </button>
                                     <input data-max="999" type="text"
-                                           class="amount-form__input js-amount-input" :value="book.count" maxlength="3">
+                                           class="amount-form__input js-amount-input" :value="book.count" maxlength="3" readonly>
                                     <button data-max="999"
                                             class="amount-form__control amount-form__control_inc js-amount-control border-none"
                                             style="border: none!important;" @click="change_basket(index, 1)">+
